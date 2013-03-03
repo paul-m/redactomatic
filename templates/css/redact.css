@@ -1,13 +1,26 @@
+html
+{
+  margin-left:auto;
+  margin-right:auto;
+  width:60%;
+  background-color:#f3f5de
+}
+
+.header
+{
+}
+
 .content
 {
-  width: 80%;
   background-color: grey;
 }
 
 .statusItem
 {
   background-color: white;
+  color:black;
   padding: 5px;
   margin: 10px;
   border:1px solid black;
 }
+
