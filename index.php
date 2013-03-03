@@ -40,7 +40,8 @@ function gleanNewestStatus() {
 	$entityManager->flush();
 }
 
-$app = new \Slim\Slim();
+//$app = new \Slim\Slim();
+$app = new \Slim\Slim(); $app->contentType('text/html; charset=utf-8');
 
 $app->get('/',
   'Redacted\gleanNewestStatus',
@@ -51,16 +52,18 @@ $app->get('/',
 		$aStatus = $entityManager->getRepository('Redacted\StatusEntity')
 		              ->findOneBy(array('id_str' => $new_highest));
 
+		$entitiesFromStatus = $aStatus->getEntities();
+		$url = $aStatus->urlToOriginal();
 		$app->response()->body(
-		  '<div>highest: ' . $new_highest . '</div>' .
-  		'<pre>'.print_r($aStatus,TRUE).'</pre>'
+//		  '<div>highest: ' . $new_highest . '</div>' .
+//  		'<pre>'.print_r($aStatus,TRUE).'</pre>' .
+//  		'<pre>'.print_r($entitiesFromStatus, TRUE) . '</pre>'
+      '<div>text: ' . $aStatus->getText() . '</div>' .
+      '<div>redacted: ' . $aStatus->redactedText() . '</div>' .
+      '<a href="' . $url . '">' . $url . '</a>' 
     );
 	}
 );
 
 $app->run();
-
-// assembled URLs:
-// tweet: https://twitter.com/PaulMitchum/status/306642224291131393
-// user: https://twitter.com/paulmitchum
 
