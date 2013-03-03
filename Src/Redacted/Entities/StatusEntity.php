@@ -67,13 +67,18 @@ class StatusEntity {
     return $this->text;
   }
 
+  /**
+   * Replace all status entities with redaction character.
+   * @TODO: breaks on multi-byte, which is illegal in twitter api anyway.
+   */
   public function redactedText() {
-    $textArray = str_split($this->text);
+    $textArray = str_split($this->getText());
     $entities = $this->getEntities();
     foreach($entities as $entity) {
       foreach($entity as $redactable) {
         foreach($textArray as $index=>$char) {
-          if (($index >= $redactable['indices'][0]) &&
+          // use > rather than >= to show # or @ or h for link
+          if (($index > $redactable['indices'][0]) &&
             ($index < $redactable['indices'][1])) {
             $textArray[$index] = '*';
           }
@@ -93,6 +98,16 @@ class StatusEntity {
       $this->id_str,
     );
     return implode($urlItems, '/');
+  }
+  
+  public function statusHTML() {
+    $html = '<div class="statusItem">';
+    $redacted = $this->redactedText();
+    $url = $this->urlToOriginal();
+    $html .= "<p>$redacted</p>\n";
+    $html .= '<a href="' . $url . '" target="_blank">Original</a>';
+    
+    return $html . "</div>\n";
   }
 
 }

@@ -1,0 +1,13 @@
+.content
+{
+  width: 80%;
+  background-color: grey;
+}
+
+.statusItem
+{
+  background-color: white;
+  padding: 5px;
+  margin: 10px;
+  border:1px solid black;
+}

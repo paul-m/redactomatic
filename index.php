@@ -23,7 +23,7 @@ function gleanNewestStatus() {
 
 	// Guzzle....
 	$client = new Client('http://search.twitter.com');
-	$request = $client->get('/search.json?q=%23secondlife&include_entities=true&result_type=recent&since_id=' . ourMostRecentStatus());
+	$request = $client->get('/search.json?q=%23redacted&include_entities=true&result_type=recent&since_id=' . ourMostRecentStatus());
 	$response = $request->send();
 	
 	$statuses = json_decode($response->getBody(), TRUE);
@@ -41,27 +41,32 @@ function gleanNewestStatus() {
 }
 
 //$app = new \Slim\Slim();
-$app = new \Slim\Slim(); $app->contentType('text/html; charset=utf-8');
+$app = new \Slim\Slim();
+
+$app->contentType('text/html; charset=utf-8');
+$view = $app->view();
+$view->setTemplatesDirectory('./templates');
 
 $app->get('/',
   'Redacted\gleanNewestStatus',
 	function () use ($app, $entityManager) {
-	  $new_highest = ourMostRecentStatus();
+  	// Get the newest 10
+    $queryBuilder = $entityManager->createQueryBuilder();
+    
+    $queryBuilder->add('select', 's')
+       ->add('from', 'Redacted\StatusEntity s')
+       ->add('orderBy', 's.id_str DESC')
+       ->setMaxResults( 10 );
+    
+    $query = $queryBuilder->getQuery();
+    $statuses = $query->getResult();
+    
+    $statusHTML = '';
+    foreach($statuses as $aStatus) {
+    		$statusHTML .= $aStatus->statusHTML();
+    }
 
-	  // get the newest one
-		$aStatus = $entityManager->getRepository('Redacted\StatusEntity')
-		              ->findOneBy(array('id_str' => $new_highest));
-
-		$entitiesFromStatus = $aStatus->getEntities();
-		$url = $aStatus->urlToOriginal();
-		$app->response()->body(
-//		  '<div>highest: ' . $new_highest . '</div>' .
-//  		'<pre>'.print_r($aStatus,TRUE).'</pre>' .
-//  		'<pre>'.print_r($entitiesFromStatus, TRUE) . '</pre>'
-      '<div>text: ' . $aStatus->getText() . '</div>' .
-      '<div>redacted: ' . $aStatus->redactedText() . '</div>' .
-      '<a href="' . $url . '">' . $url . '</a>' 
-    );
+		$app->render('index.tpl.php', array('content' => $statusHTML));
 	}
 );
 
