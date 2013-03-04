@@ -36,9 +36,9 @@ Redact-o-Matic needs the .htaccess file provided by Slim, so copy it over from `
 
 Set your web server's docroot to the project directory.
 
-Change the database credentials in `bootstrap_doctrine.php`
+If you look at `bootstrap_doctrine.php`, you'll see that it uses SQLite as a database. Initially, the database won't exist, so you have to do this: `./vendor/bin/doctrine orm:schema-tool:update --force`
 
-And then try it out.
+And then you can try it out.
 
 To Do
 ----
