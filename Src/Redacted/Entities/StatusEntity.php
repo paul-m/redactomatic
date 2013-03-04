@@ -92,14 +92,17 @@ class StatusEntity {
   
   public function urlToOriginal() {
     // tweet: https://twitter.com/PaulMitchum/status/306642224291131393
-    $urlItems = array(
-      'https:/',
-      'twitter.com',
-      $this->from_user,
-      'status',
-      $this->id_str,
-    );
-    return implode($urlItems, '/');
+    if ((!empty($this->from_user)) && (!empty($this->id_str))) {
+      $urlItems = array(
+        'https:/',
+        'twitter.com',
+        $this->from_user,
+        'status',
+        $this->id_str,
+      );
+      return implode($urlItems, '/');
+    }
+    return '';
   }
   
   public function statusHTML() {

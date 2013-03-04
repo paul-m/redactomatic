@@ -16,7 +16,7 @@ require_once "vendor/autoload.php";
 
 $dbParams = array(
     'driver' => 'pdo_sqlite',
-    'path' => __DIR__ . 'database/redacted.sqlite',
+    'path' => __DIR__ . '/database/redacted.sqlite',
 );
 
 $paths = array('Src/Redacted/Entities/');
