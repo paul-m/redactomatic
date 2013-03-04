@@ -4,20 +4,20 @@ use Doctrine\ORM\EntityManager;
 
 require_once "vendor/autoload.php";
 
-$dbParams = array(
+/*$dbParams = array(
     'driver' => 'pdo_mysql',
     'user' => 'root',
     'password' => 'root',
     'host' => 'localhost',
     'port' => 8889,
     'dbname' => 'redactomatic'
-);
-
-
-/*$dbParams = array(
-    'driver' => 'pdo_sqlite',
-    'path' => __DIR__ . '/db.sqlite',
 );*/
+
+
+$dbParams = array(
+    'driver' => 'pdo_sqlite',
+    'path' => __DIR__ . 'database/redacted.sqlite',
+);
 
 $paths = array('Src/Redacted/Entities/');
 $isDevMode = TRUE;
