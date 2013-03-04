@@ -41,15 +41,15 @@ class StatusEntity {
     $properties = get_object_vars($this);
     // Grab JSON array elements for which we have properties.
     foreach($properties as $key=>$value) {
-      // Nullify properties not in the JSON.
+      // Nullify properties not in the source.
       $this->$key = NULL;
       if (isset($entityArray[$key])) {
         $this->$key = $entityArray[$key];
-      }
-      // Special case for 'entities', so we can serialize it.
-      // @TODO: can Doctrine do this for us?
-      if ($key == 'entities') {
-        $this->$key = serialize($entityArray[$key]);
+        // Special case for 'entities', so we can serialize it.
+        // @TODO: can Doctrine do this for us?
+        if ($key == 'entities') {
+          $this->$key = serialize($entityArray[$key]);
+        }
       }
     }
     // Allow chaining.
@@ -72,8 +72,10 @@ class StatusEntity {
    * @TODO: breaks on multi-byte, which is illegal in twitter api anyway.
    */
   public function redactedText() {
+    // Chop into an array of one-character elements.
     $textArray = str_split($this->getText());
     $entities = $this->getEntities();
+    // Go through and replace chars defined as entities.
     foreach($entities as $entity) {
       foreach($entity as $redactable) {
         foreach($textArray as $index=>$char) {

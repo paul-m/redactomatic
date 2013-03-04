@@ -3,7 +3,7 @@
         "slim/slim": "2.*",
         "guzzle/guzzle": "~3.1.1",
         "doctrine/orm": "*",
-	"phpunit/phpunit": "3.7.*"
+        "phpunit/phpunit": "3.7.*"
     },
     "autoload": {
       "psr-0": { "Redacted": [

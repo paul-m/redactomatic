@@ -1,8 +1,7 @@
 <?php
 namespace Redacted;
 
-require_once 'vendor/autoload.php';
-require_once 'bootstrap_doctrine.php';
+require_once 'bootstrap.php';
 
 use Guzzle\Http\Client;
 
