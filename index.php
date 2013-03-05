@@ -88,11 +88,13 @@ $app->get('/since/:idstr',
 
     $query = $queryBuilder->getQuery();
     $statuses = $query->getResult();
-    
+    $json = array();
+    foreach($statuses as $statusEntity) {
+      $json[] = $statusEntity->redactedObject();
+    }
     $res = $app->response();
     $res['Content-Type'] = 'application/json';
-    $res['X-Powered-By'] = 'Slim';
-    $res->body(json_encode($statuses));
+    $res->body(json_encode($json));
   }
 );
 

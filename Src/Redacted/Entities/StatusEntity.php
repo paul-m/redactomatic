@@ -69,7 +69,7 @@ class StatusEntity {
 
   /**
    * Replace all status entities with redaction character.
-   * @TODO: breaks on multi-byte, which is illegal in twitter api anyway.
+   * @TODO: breaks on multi-byte.
    */
   public function redactedText() {
     // Chop into an array of one-character elements.
@@ -79,7 +79,7 @@ class StatusEntity {
     foreach($entities as $entity) {
       foreach($entity as $redactable) {
         foreach($textArray as $index=>$char) {
-          // use > rather than >= to show # or @ or h for link
+          // use > rather than >= to show # or @ or h
           if (($index > $redactable['indices'][0]) &&
             ($index < $redactable['indices'][1])) {
             $textArray[$index] = '*';
@@ -113,6 +113,20 @@ class StatusEntity {
     $html .= '<a href="' . $url . '" target="_blank">Original</a>';
     
     return $html . "</div>\n";
+  }
+
+  public function statusJSON() {
+    return json_encode($this->redactedObject());
+  }
+  
+  /**
+   * Return a simple object with the redacted status.
+   */
+  public function redactedObject() {
+    $result = new \stdClass();
+    $result->redactedStatus = $this->redactedText();
+    $result->originalURL = $this->urlToOriginal();
+    return $result;
   }
 
 }
