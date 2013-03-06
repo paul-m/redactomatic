@@ -9,6 +9,7 @@
 <![endif]-->
 </head>
 <html>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <div class="header">
 <h2>What is this?</h2>
 <p>Redact-o-Matic reads the Twitter stream and 'redacts' any tweets with the hashtag #redacted.</p>
@@ -16,8 +17,8 @@
 <p>Important: NOT AFFILIATED WITH TWITTER IN ANY WAY. :-)</p>
 <p>Reload the page to see updates. Want to play along with development? <a href="https://github.com/paul-m/redactomatic">Try here</a>.</p>
 </div>
-<div class="content">
-<?php echo $content ?>
+<div class="redactedStatuses">
+<?php echo $redactedStatuses ?>
 </div>
 </html>
 

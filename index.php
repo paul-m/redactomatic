@@ -36,6 +36,7 @@ function gleanNewestStatus() {
 		$statusEntities[] = $statusEntity;
 		$entityManager->persist($statusEntity);
   }
+  // store the entities
 	$entityManager->flush();
 }
 
@@ -66,7 +67,7 @@ $app->get('/',
     		$statusHTML .= $aStatus->statusHTML();
     }
 
-		$app->render('index.tpl.php', array('content' => $statusHTML));
+		$app->render('index.tpl.php', array('redactedStatuses' => $statusHTML));
 	}
 );
 
@@ -76,7 +77,7 @@ $app->get('/',
 $app->get('/since/:idstr',
   'Redacted\gleanNewestStatus',
   function ($idstr) use ($app, $entityManager) {
-    $app->contentType('javascript....');
+    //$app->contentType('javascript....');
     
   	// Get the latest since.
     $queryBuilder = $entityManager->createQueryBuilder();
