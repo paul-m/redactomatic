@@ -106,7 +106,9 @@ class StatusEntity {
   }
   
   public function statusHTML() {
-    $html = '<div class="statusItem" data-id_str="' . $this->id_str . '">';
+    $html = '<div class="statusItem" data-id_str="' . 
+      $this->id_str . '" data-object=\'' .
+      htmlspecialchars($this->statusJSON()) . '\'>';
     $redacted = $this->redactedText();
     $url = $this->urlToOriginal();
     $html .= "<p>$redacted</p>\n";
@@ -125,7 +127,7 @@ class StatusEntity {
   public function redactedObject() {
     $result = new \stdClass();
     $result->id_str = $this->id_str;
-    $result->redactedStatus = $this->redactedText();
+    $result->redactedStatus = utf8_encode($this->redactedText());
     $result->originalURL = $this->urlToOriginal();
     return $result;
   }

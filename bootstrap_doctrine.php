@@ -9,6 +9,16 @@ $dbParams = array(
     'path' => __DIR__ . '/database/redacted.sqlite',
 );
 
+if (isset($_SERVER['PLATFORM']) && ($_SERVER['PLATFORM'] == 'PAGODABOX')) {
+  $dbParams = array(
+    'driver' => 'pdo_mysql',
+    'user' => 'DB1_USER',
+    'password' => 'DB1_PASS',
+    'dbname' => 'DB1_NAME',
+    'host' => 'DB1_HOST'
+  );
+}
+
 $paths = array('Src/Redacted/Entities/');
 $isDevMode = TRUE;
 
