@@ -12,11 +12,12 @@ Redacted tweets are presented with a link back to the original, and thus hopeful
 
 Redact-o-Matic uses the following PHP libraries and frameworks:
 
-- Slim
-- Guzzle
-- Doctrine
-- PHPUnit
-- Composer
+- Slim: http://www.slimframework.com/
+- Guzzle: http://guzzlephp.org/
+- Doctrine ORM: http://www.doctrine-project.org/projects/orm.html
+- PHPUnit: https://github.com/sebastianbergmann/phpunit/
+- Composer: http://getcomposer.org/
+- SQLite: http://www.sqlite.org/
 
 Why?
 ----
@@ -30,7 +31,7 @@ You need Composer. Do the standard Composer things:
 
 - `cd` to project directory.
 - `curl -s https://getcomposer.org/installer | php` will install Composer for you.
-- `php ./composer.phar -o update` will make sure all the dependencies are set up.
+- `php ./composer.phar -o update` will read composer.json and make sure all the dependencies are set up.
 
 Redact-o-Matic needs the .htaccess file provided by Slim, so copy it over from `vendor/slim/slim/.htaccess` to the root directory.
 

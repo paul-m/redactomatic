@@ -83,7 +83,6 @@ class StatusEntityTest extends \PHPUnit_Framework_TestCase {
 
   /**
    * @dataProvider statusArrayDataProviderEntities
-   * Turns out we don't actually need statusJSON().
    */
   public function testRedactedObject($items) {
     $entity = new StatusEntity();

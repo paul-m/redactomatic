@@ -21,6 +21,8 @@ abstract class RedactedDBTestCase extends \PHPUnit_Extensions_Database_TestCase
         self::$pdo = new \PDO('sqlite::memory:');
       }
       // Add the User table.
+      // One day we'll learn how to tell doctrine to do this
+      // without a console command.
       // ./vendor/bin/doctrine orm:schema-tool:create --dump-sql
       self::$pdo->query('CREATE TABLE Statuses (id INT AUTO_INCREMENT NOT NULL, created_at VARCHAR(255) NOT NULL, from_user VARCHAR(255) NOT NULL, from_user_id_str VARCHAR(255) NOT NULL, id_str VARCHAR(255) NOT NULL, text VARCHAR(255) NOT NULL, entities LONGTEXT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB;');
       // Generate the fixture.
