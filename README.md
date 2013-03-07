@@ -22,8 +22,6 @@ Redact-o-Matic uses the following PHP libraries and frameworks:
 Why?
 ----
 
-Why not.
-
 Assignment 3 for a PHP class I'm taking. :-)
 
 Installation
