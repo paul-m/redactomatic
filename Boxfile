@@ -16,6 +16,7 @@ web1:
   name: redactomatic
   php_version: 5.3.10
   php_extensions:
+    - curl
     - hash
     - json
     - pdo
