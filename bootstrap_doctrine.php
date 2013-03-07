@@ -12,10 +12,10 @@ $dbParams = array(
 if (isset($_SERVER['PLATFORM']) && ($_SERVER['PLATFORM'] == 'PAGODABOX')) {
   $dbParams = array(
     'driver' => 'pdo_mysql',
-    'user' => 'DB1_USER',
-    'password' => 'DB1_PASS',
-    'dbname' => 'DB1_NAME',
-    'host' => 'DB1_HOST'
+    'user' => $_SERVER['DB1_USER'],
+    'password' => $_SERVER['DB1_PASS'],
+    'dbname' => $_SERVER['DB1_NAME'],
+    'host' => $_SERVER['DB1_HOST']
   );
 }
 
