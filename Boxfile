@@ -17,6 +17,7 @@ web1:
   php_version: 5.3.10
   php_extensions:
     - curl
+    - zip
     - hash
     - json
     - pdo
