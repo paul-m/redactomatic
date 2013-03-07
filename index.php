@@ -11,7 +11,7 @@ use Guzzle\Http\Client;
 function ourMostRecentStatus() {
   global $entityManager;
 	// Find the most recent status we have using DQL.
-	$query = $entityManager->createQuery('SELECT max(s.id_str) FROM Redacted\StatusEntity s');
+	$query = $entityManager->createQuery('SELECT max(s.id_str) FROM \Redacted\StatusEntity s');
   $highest_id_str = $query->getSingleScalarResult();
   return $highest_id_str;
 }
@@ -55,7 +55,7 @@ $app->get('/',
   	// Get the newest 10
     $queryBuilder = $entityManager->createQueryBuilder();
     $queryBuilder->add('select', 's')
-       ->add('from', 'Redacted\StatusEntity s')
+       ->add('from', '\Redacted\StatusEntity s')
        ->add('orderBy', 's.id_str DESC')
        ->setMaxResults( 10 );
 
@@ -82,7 +82,7 @@ $app->get('/since/:idstr',
   	// Get the latest since.
     $queryBuilder = $entityManager->createQueryBuilder();
     $queryBuilder->add('select', 's')
-       ->add('from', 'Redacted\StatusEntity s')
+       ->add('from', '\Redacted\StatusEntity s')
        ->add('where', 's.id_str > :idstr')
        ->add('orderBy', 's.id_str DESC')
        ->setParameter('idstr', $idstr);
