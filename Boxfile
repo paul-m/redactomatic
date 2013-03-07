@@ -11,6 +11,7 @@ db1:
 web1: 
   after_build:
     - "if [ ! -f composer.phar ]; then curl -s http://getcomposer.org/installer | php; fi; php composer.phar install"
+  before_deploy:
     - "./vendor/bin/doctrine orm:schema-tool:update --force"
   name: redactomatic
   php_version: 5.3.10
