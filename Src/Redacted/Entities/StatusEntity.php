@@ -1,5 +1,5 @@
 <?php
-namespace Redacted;
+namespace \Redacted;
 
 /**
  * @Entity
