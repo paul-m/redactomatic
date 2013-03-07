@@ -16,13 +16,13 @@ web1:
   name: redactomatic
   php_version: 5.3.10
   php_extensions:
+    - mysql
     - curl
     - zip
     - hash
     - json
     - pdo
     - apc
-    - mysqli
     - gd
     - xml
     - pdo_mysql
