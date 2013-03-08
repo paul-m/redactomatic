@@ -19,6 +19,8 @@ Redact-o-Matic uses the following PHP libraries and frameworks:
 - Composer: http://getcomposer.org/
 - SQLite: http://www.sqlite.org/
 
+See it in action here: http://redactomatic.pagodabox.com/
+
 Why?
 ----
 
@@ -26,6 +28,8 @@ Assignment 3 for a PHP class I'm taking. :-)
 
 Installation
 ----
+
+For Pagodabox.com hosting, just deploy. It has a Boxfile.
 
 You need Composer. Do the standard Composer things:
 
@@ -37,12 +41,10 @@ Redact-o-Matic needs the .htaccess file provided by Slim, so copy it over from `
 
 Set your web server's docroot to the project directory.
 
-If you look at `bootstrap_doctrine.php`, you'll see that it uses SQLite as a database. Initially, the database won't exist, so you have to do this: `./vendor/bin/doctrine orm:schema-tool:update --force`
-
-And then you can try it out.
+If you look at `bootstrap_doctrine.php`, you'll see that Redact-o-Matic uses SQLite as a database for local development. You can change the database settings here. Initially, the schema won't exist, but Doctrine can generate it for you, this way: `./vendor/bin/doctrine orm:schema-tool:update --force`
 
 To Do
 ----
 
-- More (any) tests.
+- More tests.
 - Fix Unicode errors.
