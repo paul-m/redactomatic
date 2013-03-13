@@ -4,7 +4,7 @@ Redact-o-Matic
 What is it?
 ----
 
-A Twitter anonymizer. (Not really.)
+A Twitter anonymizer. (Not really. OK. Maybe. But not.)
 
 That is, it will 'redact' identifying information from any Twitter status update with the hashtag `#redacted`.
 
