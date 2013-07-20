@@ -1,6 +1,10 @@
 Redact-o-Matic
 ===
 
+Well the first thing to know about Redact-o-Matic is that it doesn't work anymore. That's because Twitter changed their APIs to require authentication, and this project probably won't be updated for that change.
+
+Unless someone out there in open source land wants to, that is. But not in the foreseeable future.
+
 What is it?
 ----
 
